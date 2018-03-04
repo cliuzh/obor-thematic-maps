@@ -1,0 +1,32 @@
+#options {
+    font-size: 16px;
+}
+
+#view {
+    width: 100%;
+}
+
+#map {
+    float: left;
+    width: 70%;
+}
+
+#countryInfo {
+    float: right;
+    width: 25%;
+    font-family: Chalkboard;
+}
+
+.background {
+    fill: none;
+    pointer-events: all;
+}
+
+.feature {
+    stroke: white;
+    fill: #85929E;
+}
+
+.feature.active {
+    fill: #F0B27A;
+}

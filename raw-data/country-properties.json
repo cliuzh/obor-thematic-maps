@@ -1,0 +1,1001 @@
+[
+  {
+    "countryName": "China",
+    "countryId": "CHN",
+    "dominantReligion": null,
+    "religionComposition": {
+      "Buddhism": 0.158,
+      "Christianity": 0.025,
+      "Islam": 0.004
+    },
+    "officialLanguages": ["Mandarin"]
+  },
+
+  {
+    "countryName": "Singapore",
+    "countryId": "SGP",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Buddhism": 0.332,
+      "Christianity": 0.188,
+      "Islam": 0.140,
+      "Taoism": 0.100,
+      "Hinduism": 0.005
+    },
+    "officialLanguages": ["English", "Malay", "Mandarin", "Tamil"]
+  },
+
+  {
+    "countryName": "Malaysia",
+    "countryId": "MYS",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.613,
+      "Buddhism": 0.198,
+      "Christianity": 0.092,
+      "Hinduism": 0.062
+    },
+    "officialLanguages": ["Malay"]
+  },
+
+  {
+    "countryName": "Indonesia",
+    "countryId": "IDN",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.872,
+      "Christianity": 0.099,
+      "Hinduism": 0.017,
+      "Buddhism": 0.007,
+      "Confucianism": 0.002
+    },
+    "officialLanguages": ["Indonesia"]
+  },
+
+  {
+    "countryName": "Myanmar",
+    "countryId": "MMR",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Buddhism": 0.879,
+      "Christianity": 0.062,
+      "Islam": 0.043,
+      "Tribal Religions": 0.008,
+      "Hinduism": 0.005
+    },
+    "officialLanguages": ["Indonesia"]
+  },
+
+  {
+    "countryName": "Thailand",
+    "countryId": "THA",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Buddhism": 0.932,
+      "Islam": 0.049,
+      "Christianity": 0.009,
+      "Hinduism": 0.001
+    },
+    "officialLanguages": ["Thai"]
+  },
+
+  {
+    "countryName": "Laos",
+    "countryId": "LAO",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Buddhism": 0.647,
+      "Folk": 0.314,
+      "Christianity": 0.017
+    },
+    "officialLanguages": ["Lao"]
+  },
+
+  {
+    "countryName": "Cambodia",
+    "countryId": "KHM",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Buddhism": 0.969,
+      "Islam": 0.020,
+      "Folk": 0.006,
+      "Christianity": 0.004
+    },
+    "officialLanguages": ["Khmer"]
+  },
+
+  {
+    "countryName": "Vietnam",
+    "countryId": "VNM",
+    "dominantReligion": null,
+    "religionComposition": {
+      "Buddhism": 0.122,
+      "Catholicism": 0.068,
+      "Caodaism": 0.048,
+      "Protestantism": 0.015,
+      "Hoahaoism": 0.014
+    },
+    "officialLanguages": ["Vietnamese"]
+  },
+
+  {
+    "countryName": "Brunei",
+    "countryId": "BRN",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.670,
+      "Buddhism": 0.130,
+      "Christianity": 0.100
+    },
+    "officialLanguages": ["Malay"]
+  },
+
+  {
+    "countryName": "Philippines",
+    "countryId": "PHL",
+    "dominantReligion": {
+      "name": "Christianity",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Christianity": 0.920,
+      "Islam": 0.056
+    },
+    "officialLanguages": ["Filipino", "English"]
+  },
+
+  {
+    "countryName": "Iran",
+    "countryId": "IRN",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.993,
+      "Christianity": 0.002
+    },
+    "officialLanguages": ["Persian"]
+  },
+
+  {
+    "countryName": "Iraq",
+    "countryId": "IRQ",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.960,
+      "Gnosticism": 0.020,
+      "Christianity": 0.012
+    },
+    "officialLanguages": ["Arabic", "Kurdish"]
+  },
+
+  {
+    "countryName": "Turkey",
+    "countryId": "TUR",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.690,
+      "Christianity": 0.020
+    },
+    "officialLanguages": ["Turkish"]
+  },
+
+  {
+    "countryName": "Syria",
+    "countryId": "SYR",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.870,
+      "Christianity": 0.100,
+      "Druzism": 0.030
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Jordan",
+    "countryId": "JOR",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.920,
+      "Christianity": 0.040
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Lebanon",
+    "countryId": "LBN",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.540,
+      "Christianity": 0.404,
+      "Druzism": 0.056
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Israel",
+    "countryId": "ISR",
+    "dominantReligion": {
+      "name": "Judaism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Judaism": 0.748,
+      "Islam": 0.176,
+      "Christianity": 0.020,
+      "Druzism": 0.016
+    },
+    "officialLanguages": ["Hebrew", "Arabic"]
+  },
+
+  {
+    "countryName": "Palestine",
+    "countryId": "PLE",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.930,
+      "Christianity": 0.060,
+      "Druzism": 0.010
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Saudi Arabia",
+    "countryId": "SAU",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.950
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Yemen",
+    "countryId": "YEM",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.985
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Oman",
+    "countryId": "OMN",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.859,
+      "Christianity": 0.065,
+      "Hinduism": 0.055,
+      "Buddhism": 0.008
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "United Arab Emirates",
+    "countryId": "ARE",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.760,
+      "Christianity": 0.126,
+      "Hinduism": 0.066,
+      "Buddhism": 0.020
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Qatar",
+    "countryId": "QAT",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.677,
+      "Christianity": 0.138,
+      "Hinduism": 0.138,
+      "Buddhism": 0.031
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Kuwait",
+    "countryId": "KWT",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.999
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Bahrain",
+    "countryId": "BHR",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.703,
+      "Christianity": 0.145,
+      "Hinduism": 0.098,
+      "Buddhism": 0.025,
+      "Judaism": 0.006
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "Greece",
+    "countryId": "GRC",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.980,
+      "Islam": 0.013
+    },
+    "officialLanguages": ["Greek"]
+  },
+
+  {
+    "countryName": "Cyprus",
+    "countryId": "CYP",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.780,
+      "Islam": 0.200
+    },
+    "officialLanguages": ["Greek", "Turkish"]
+  },
+
+  {
+    "countryName": "Egypt",
+    "countryId": "EGY",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.900,
+      "Orthodoxy": 0.090
+    },
+    "officialLanguages": ["Arabic"]
+  },
+
+  {
+    "countryName": "India",
+    "countryId": "IND",
+    "dominantReligion": {
+      "name": "Hinduism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Hinduism": 0.798,
+      "Islam": 0.142,
+      "Christianity": 0.023,
+      "Sikhism": 0.017,
+      "Buddhism": 0.007,
+      "Jainism": 0.004
+    },
+    "officialLanguages": ["Hindi", "English"]
+  },
+
+  {
+    "countryName": "Pakistan",
+    "countryId": "PAK",
+    "dominantReligion": {
+      "name": "Islam ",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.964
+    },
+    "officialLanguages": ["Urdu", "English"]
+  },
+
+  {
+    "countryName": "Bangladesh",
+    "countryId": "BGD",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.866,
+      "Hinduism": 0.121,
+      "Buddhism": 0.006,
+      "Christianity": 0.004
+    },
+    "officialLanguages": ["Bengali"]
+  },
+
+  {
+    "countryName": "Afghanistan",
+    "countryId": "AFG",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.990
+    },
+    "officialLanguages": ["Pashto", "Dari"]
+  },
+
+  {
+    "countryName": "Sri Lanka",
+    "countryId": "LKA",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Buddhism": 0.702,
+      "Hinduism": 0.126,
+      "Islam": 0.097,
+      "Christianity": 0.074
+    },
+    "officialLanguages": ["Sinhalese", "Tamil"]
+  },
+
+  {
+    "countryName": "Maldives",
+    "countryId": "MDV",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Islam": 0.984
+    },
+    "officialLanguages": ["Maldivian"]
+  },
+
+  {
+    "countryName": "Nepal",
+    "countryId": "NPL",
+    "dominantReligion": {
+      "name": "Hinduism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Hinduism": 0.813,
+      "Buddhism": 0.090,
+      "Islam": 0.044,
+      "Kirant": 0.030,
+      "Christianity": 0.014,
+      "Animism": 0.004
+    },
+    "officialLanguages": ["Nepali"]
+  },
+
+  {
+    "countryName": "Bhutan",
+    "countryId": "BTN",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Buddhism": 0.747,
+      "Hinduism": 0.226,
+      "Christianity": 0.005,
+      "Islam": 0.002
+    },
+    "officialLanguages": ["Dzongkha"]
+  },
+
+  {
+    "countryName": "Kazakhstan",
+    "countryId": "KAZ",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.704,
+      "Christianity": 0.247,
+      "Folk": 0.003,
+      "Buddhism": 0.002
+    },
+    "officialLanguages": ["Kazakh"]
+  },
+
+  {
+    "countryName": "Uzbekistan",
+    "countryId": "UZB",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.790,
+      "Orthodoxy": 0.050
+    },
+    "officialLanguages": ["Uzbek"]
+  },
+
+  {
+    "countryName": "Turkmenistan",
+    "countryId": "TKM",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.890,
+      "Christianity": 0.100
+    },
+    "officialLanguages": ["Turkmen"]
+  },
+
+  {
+    "countryName": "Tajikistan",
+    "countryId": "TJK",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.967,
+      "Christianity": 0.016
+    },
+    "officialLanguages": ["Tajik"]
+  },
+
+  {
+    "countryName": "Kyrgyzstan",
+    "countryId": "KGZ",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.800,
+      "Orthodoxy": 0.170
+    },
+    "officialLanguages": ["Russian"]
+  },
+
+  {
+    "countryName": "Russia",
+    "countryId": "RUS",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.410,
+      "Islam": 0.065,
+      "Christianity": 0.058,
+      "Folk": 0.012,
+      "Buddhism": 0.005
+    },
+    "officialLanguages": ["Russian"]
+  },
+
+  {
+    "countryName": "Ukraine",
+    "countryId": "UKR",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.654,
+      "Christianity": 0.071,
+      "Catholicism": 0.075,
+      "Islam": 0.011,
+      "Judaism": 0.002,
+      "Hinduism": 0.002
+    },
+    "officialLanguages": ["Ukrainian"]
+  },
+
+  {
+    "countryName": "Belarus",
+    "countryId": "BLR",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.483,
+      "Catholicism": 0.071
+    },
+    "officialLanguages": ["Belarusian", "Russian"]
+  },
+
+  {
+    "countryName": "Georgia",
+    "countryId": "GEO",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": true
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.834,
+      "Islam": 0.107,
+      "Armenian Apostolic": 0.029,
+      "Catholicism": 0.010
+    },
+    "officialLanguages": ["Georgian"]
+  },
+
+  {
+    "countryName": "Azerbaijan",
+    "countryId": "AZE",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.974,
+      "Christianity": 0.011
+    },
+    "officialLanguages": ["Azerbainjani"]
+  },
+
+  {
+    "countryName": "Armenia",
+    "countryId": "ARM",
+    "dominantReligion": {
+      "name": "Christianity",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Christianity": 0.976,
+      "Yazidism": 0.008
+    },
+    "officialLanguages": ["Armenian"]
+  },
+
+  {
+    "countryName": "Moldova",
+    "countryId": "MDA",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.933,
+      "Protestantism": 0.019,
+      "Catholicism": 0.001,
+      "Judaism": 0.001
+    },
+    "officialLanguages": ["Romanian"]
+  },
+
+  {
+    "countryName": "Poland",
+    "countryId": "POL",
+    "dominantReligion": {
+      "name": "Catholicism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Catholicism": 0.876
+    },
+    "officialLanguages": ["Polish"]
+  },
+
+  {
+    "countryName": "Lithuania",
+    "countryId": "LTU",
+    "dominantReligion": {
+      "name": "Catholicism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Catholicism": 0.772,
+      "Orthodoxy": 0.049,
+      "Lutheranism": 0.006
+    },
+    "officialLanguages": ["Lithuanian"]
+  },
+
+  {
+    "countryName": "Estonia",
+    "countryId": "EST",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.162,
+      "Lutheranism": 0.162,
+      "Baptists": 0.004,
+      "Catholicism": 0.004
+    },
+    "officialLanguages": ["Estonian"]
+  },
+
+  {
+    "countryName": "Latvia",
+    "countryId": "LVA",
+    "dominantReligion": {
+      "name": "Lutheranism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Lutheranism": 0.342,
+      "Catholicism": 0.241,
+      "Orthodoxy": 0.178
+    },
+    "officialLanguages": ["Latvian"]
+  },
+
+  {
+    "countryName": "Czech",
+    "countryId": "CZE",
+    "dominantReligion": {
+      "name": "Catholicism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Catholicism": 0.104,
+      "Christianity": 0.022
+    },
+    "officialLanguages": ["Czech"]
+  },
+
+  {
+    "countryName": "Slovakia",
+    "countryId": "SVK",
+    "dominantReligion": {
+      "name": "Christianity",
+      "isOfficial": false 
+    },
+    "religionComposition": {
+      "Christianity": null
+    },
+    "officialLanguages": ["Slovak"]
+  },
+
+  {
+    "countryName": "Hungary",
+    "countryId": "HUN",
+    "dominantReligion": {
+      "name": "Christianity",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Christianity": 0.529,
+      "Catholicism": 0.371,
+      "Calvinism": 0.111,
+      "Lutheranism": 0.022
+    },
+    "officialLanguages": ["Hungarian"]
+  },
+
+  {
+    "countryName": "Slovenia",
+    "countryId": "SVN",
+    "dominantReligion": {
+      "name": "Catholicism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Catholicism": 0.578,
+      "Islam": 0.024,
+      "Orthodoxy": 0.023,
+      "Lutheranism": 0.008
+    },
+    "officialLanguages": ["Slovence"]
+  },
+
+  {
+    "countryName": "Croatia",
+    "countryId": "HRV",
+    "dominantReligion": {
+      "name": "Catholicism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Catholicism": 0.863,
+      "Orthodoxy": 0.045,
+      "Islam": 0.015,
+      "Protestantism": 0.004
+    },
+    "officialLanguages": ["Croatian"]
+  },
+
+  {
+    "countryName": "Bosnia and Herzegovina",
+    "countryId": "BIH",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.510,
+      "Christianity": 0.460
+    },
+    "officialLanguages": ["Bosnian", "Croatian", "Serbian"]
+  },
+
+  {
+    "countryName": "Montenegro",
+    "countryId": "MNE",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.721,
+      "Islam": 0.191
+    },
+    "officialLanguages": ["Montenegrin"]
+  },
+
+  {
+    "countryName": "Serbia",
+    "countryId": "SRB",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.840,
+      "Catholicism": 0.006,
+      "Islam": 0.030
+    },
+    "officialLanguages": ["Serbian"]
+  },
+
+  {
+    "countryName": "Albania",
+    "countryId": "ALB",
+    "dominantReligion": {
+      "name": "Islam",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Islam": 0.588,
+      "Christianity": 0.171
+    },
+    "officialLanguages": ["Albanian"]
+  },
+
+  {
+    "countryName": "Romania",
+    "countryId": "ROU",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.810,
+      "Catholicism": 0.050
+    },
+    "officialLanguages": ["Romanian"]
+  },
+
+  {
+    "countryName": "Bulgaria",
+    "countryId": "BGR",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.534,
+      "Islam": 0.100
+    },
+    "officialLanguages": ["Bulgarian"]
+  },
+
+  {
+    "countryName": "Macedonia",
+    "countryId": "MKD",
+    "dominantReligion": {
+      "name": "Orthodoxy",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Orthodoxy": 0.648,
+      "Islam": 0.333,
+      "Christianity": 0.004
+    },
+    "officialLanguages": ["Macedonian"]
+  },
+
+  {
+    "countryName": "East Timor",
+    "countryId": "TLS",
+    "dominantReligion": {
+      "name": "Catholicism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Catholicism": 0.969
+    },
+    "officialLanguages": ["Tetum", "Portuguese"]
+  },
+
+  {
+    "countryName": "Mongolia",
+    "countryId": "MNG",
+    "dominantReligion": {
+      "name": "Buddhism",
+      "isOfficial": false
+    },
+    "religionComposition": {
+      "Buddhism": 0.500,
+      "Islam": 0.030,
+      "Shananism": 0.029,
+      "Christianity": 0.021
+    },
+    "officialLanguages": ["Mongolian"]
+  }
+]
