@@ -1,0 +1,4 @@
+{
+  "mongoConnectionUrl": "mongodb://localhost:27017",
+  "listeningPort": 3000
+}
