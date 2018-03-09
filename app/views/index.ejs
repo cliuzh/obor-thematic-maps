@@ -6,14 +6,24 @@
 
   <link href='css/style.css' rel='stylesheet'>
   <script src='js/d3.v5.min.js'></script>
+  <script src='js/d3-selection-multi.v1.min.js'></script>
 </head>
 
 <body>
-  <div id='options'>
-    <input type='button' value='Default' onclick='console.log(1)' />
-    <input type='button' value='Languages' onclick='console.log(1)' />
-    <input type='button' value='Religions' onclick='console.log(1)' />
-  </div>
+  <select id='mapOption' title='mapOption'>
+    <option>Default</option>
+    <option>Native Language Family</option>
+    <option>Number of Official Languages</option>
+    <option>English as Official Language</option>
+    <option>Prevailing Religion</option>
+    <option>Number of Major Religions</option>
+    <option>Officially Religious</option>
+    <option>Percentage of Religious Population</option>
+    <option>Percentage of Christians</option>
+    <option>Percentage of Muslims</option>
+    <option>Percentage of Buddhists</option>
+    <option>Percentage of Jews</option>
+  </select>
   <div id='view'></div>
 
   <script>const locals = <%- JSON.stringify(locals) %>;</script>

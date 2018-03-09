@@ -16,7 +16,7 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
   const mongo = await MongoClient.connect(config.mongoConnectionUrl);
-  const col = mongo.db('obor').collection('countries');
+  const col = mongo.db('obor').collection('docs');
   const docs = await col.find().toArray();
   await mongo.close();
   res.locals.docs = docs;

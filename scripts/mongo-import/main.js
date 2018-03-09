@@ -4,7 +4,7 @@ const dataGeo = require('../raw-data/world-geo.json').features;
 
 (async () => {
   const mongo = await Mongo.connect('mongodb://localhost:27017');
-  const col = mongo.db('obor').collection('countries');
+  const col = mongo.db('obor').collection('docs');
 
   await col.createIndex({ 'prop.countryId': 1 }, { unique: true });
 

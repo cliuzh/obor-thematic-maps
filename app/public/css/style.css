@@ -1,4 +1,8 @@
-#options {
+* {
+    font-family: Avenir, sans-serif;
+}
+
+#mapOption {
     font-size: 16px;
 }
 
@@ -14,19 +18,9 @@
 #countryInfo {
     float: right;
     width: 25%;
-    font-family: Chalkboard;
 }
 
 .background {
     fill: none;
     pointer-events: all;
-}
-
-.feature {
-    stroke: white;
-    fill: #85929E;
-}
-
-.feature.active {
-    fill: #F0B27A;
 }
