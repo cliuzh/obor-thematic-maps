@@ -29,4 +29,4 @@ async function importLanguages() {
   console.log('DONE');
 }
 
-importLanguages().catch(err => console.log(err));
+importCountries().catch(err => console.log(err));

@@ -6,18 +6,21 @@ delete languageClassification._id;
 
 const mapSize = { w: 800, h: 550 };
 const legendSize = {
-  wSymbols: 100, wInterval: 20, wText: 300, h: 550, hInterval: 4,
+  wSymbols: 100, wInterval: 20, wText: 300,
+  h: 550, hInterval: 4, hBorder: 50,
   get w() { return this.wSymbols + this.wText + this.wInterval * 2; },
-  get xCalibration() { return this.wInterval },
+  get hSymbols() { return this.h - this.hBorder * 2; },
+  get xSymbols() { return this.wInterval },
   get xText() { return this.wInterval * 2 + this.wSymbols; }
 };
 
 let zoomed;
 
 const presentation = {
-  fill_feature: '#BDC3C7',
+  fill_feature: '#7FB3D5',
   stroke_feature: '#ECF0F1',
   stroke_selectedFeature: '#000000',
+  strokeWidth_selectedFeature: 2,
   fill_legendText: '#34495E'
 };
 
@@ -50,7 +53,7 @@ svgMap.append('rect')
 
 const gFeatureCollection = svgMap.append('g')
   .attr('class', 'featureCollection')
-  .attr('stroke', 'white');
+  .attr('stroke', presentation.stroke_feature);
 
 const pathFeatures = gFeatureCollection.selectAll('path')
   .data(countriesOnMap)
@@ -70,13 +73,13 @@ d3.select('#mapOption')
       case 'Number of Official Languages': mapByNumOfOfficialLanguages(); break;
       case 'English as Official Language': mapByEnglishAsOfficialLanguage(); break;
       case 'Prevailing Religion': mapByPrevailingReligion(); break;
-      case 'Number of Major Religions': mapByNumberOfMajorReligions(); break;
+      case 'Number of Popular Religions': mapByNumberOfPopularReligions(); break;
       case 'Officially Religious': mapByOfficiallyReligious(); break;
       case 'Percentage of Religious Population': mapByPercentageOfReligiousPopulation(); break;
-      case 'Percentage of Christians': mapByPercentageOfChristians(); break;
-      case 'Percentage of Muslims': mapByPercentageOfMuslims(); break;
-      case 'Percentage of Buddhists': mapByPercentageOfBuddhists(); break;
-      case 'Percentage of Jews': mapByPercentageOfJews(); break;
+      case 'Percentage of Christians': mapByPercentageOfSpecifiedReligion('Christianity'); break;
+      case 'Percentage of Muslims': mapByPercentageOfSpecifiedReligion('Islam'); break;
+      case 'Percentage of Buddhists': mapByPercentageOfSpecifiedReligion('Buddhism'); break;
+      case 'Percentage of Orthodox Christians': mapByPercentageOfSpecifiedReligion('Orthodoxy'); break;
       default: break;
     }
   });
@@ -94,17 +97,17 @@ function mapByNativeLanguageFamily() {
     return result
   }, []);
 
-  const symbolDef = languageFamilies.reduce((result, languageFamily, idx) => {
+  const symbolMapping = languageFamilies.reduce((result, languageFamily, idx) => {
     result[languageFamily] = d3.schemePaired[idx];
     return result;
   }, {});
 
   pathFeatures.attr('fill', d => {
     const nativeLanguage = d.prop.officialLanguages[0];
-    return symbolDef[languageClassification[nativeLanguage]];
+    return symbolMapping[languageClassification[nativeLanguage]];
   });
 
-  generateLegendDiscrete(symbolDef);
+  generateLegendClassified(symbolMapping);
 }
 
 function mapByNumOfOfficialLanguages() {
@@ -118,63 +121,142 @@ function mapByNumOfOfficialLanguages() {
     return result;
   }, {min: Infinity, max: -Infinity});
 
-  const symbolDef = {};
+  const symbolMapping = {};
   for (let num = min; num <= max; ++num) {
     const t = (num - min + 1.5) / (max - min + 1.5);
-    symbolDef[num] = d3.interpolateBlues(t);
+    symbolMapping[num] = d3.interpolateBlues(t);
   }
 
   pathFeatures.attr('fill', d => {
     const num = d.prop.officialLanguages.length;
-    return symbolDef[num];
+    return symbolMapping[num];
   });
 
-  generateLegendDiscrete(symbolDef);
+  generateLegendClassified(symbolMapping);
 }
 
 function mapByEnglishAsOfficialLanguage() {
-  const symbolDef = {
+  const symbolMapping = {
     'English Official': '#76D7C4',
     'English not Official': '#85C1E9' };
 
   pathFeatures.attr('fill', d => {
-    const isEnglishUsed = d.prop.officialLanguages.includes('English');
-    return isEnglishUsed ? symbolDef['English Official'] : symbolDef['English not Official'];
+    const isEnglishOfficial = d.prop.officialLanguages.includes('English');
+    return isEnglishOfficial ? symbolMapping['English Official'] : symbolMapping['English not Official'];
   });
 
-  generateLegendDiscrete(symbolDef);
+  generateLegendClassified(symbolMapping);
 }
 
 function mapByPrevailingReligion() {
+  const religions = countriesOnMap.reduce((result, country) => {
+    const religion = country.prop.dominantReligion;
+    if (religion != null && !result.includes(religion.name)) {
+      result.push(religion.name);
+    }
+    return result
+  }, []);
+  religions.push('Non-religious');
 
+  const symbolMapping = religions.reduce((result, religion, idx) => {
+    result[religion] = d3.schemePaired[idx];
+    return result;
+  }, {});
+
+  pathFeatures.attr('fill', d => {
+    const prevailingReligion = d.prop.dominantReligion;
+    const className = prevailingReligion == null ? 'Non-religious' : prevailingReligion.name;
+    return symbolMapping[className];
+  });
+
+  generateLegendClassified(symbolMapping);
+  console.log(d3.schemePaired);
 }
 
-function mapByNumberOfMajorReligions() {
+function mapByNumberOfPopularReligions() {
+  let {min, max} = countriesOnMap.reduce((result, country) => {
+    const num = Object.keys(country.prop.religionComposition).length;
+    console.log(num);
+    if (num < result.min) {
+      result.min = num;
+    } else if (num > result.max) {
+      result.max = num;
+    }
+    return result;
+  }, {min: Infinity, max: -Infinity});
 
+  const symbolMapping = {};
+  for (let num = min; num <= max; ++num) {
+    const t = (num - min + 1) / (max - min + 1);
+    symbolMapping[num] = d3.interpolateBlues(t);
+  }
+
+  pathFeatures.attr('fill', d => {
+    const num = Object.keys(d.prop.religionComposition).length;
+    return symbolMapping[num];
+  });
+
+  generateLegendClassified(symbolMapping);
 }
 
 function mapByOfficiallyReligious() {
+  const symbolMapping = {
+    'Officially Religious': '#76D7C4',
+    'Not Officially Religious': '#85C1E9' };
 
+  pathFeatures.attr('fill', d => {
+    const prevailingReligion = d.prop.dominantReligion;
+    const isOfficiallyReligious = prevailingReligion == null ? false : prevailingReligion.isOfficial;
+    return isOfficiallyReligious ? symbolMapping['Officially Religious'] : symbolMapping['Not Officially Religious'];
+  });
+
+  generateLegendClassified(symbolMapping);
 }
 
 function mapByPercentageOfReligiousPopulation() {
+  const min = 0;
+  const max = 1;
 
+  const thresholds = steppedThresholds(min, max, 0.1);
+  const symbols = [];
+  for (let i = 0; i < thresholds.length - 1; ++i) {
+    const classMid = (thresholds[i] + thresholds[i + 1]) * 0.5;
+    const t = (classMid - min + 0.3) / (max - min + 0.3);
+    symbols.push(d3.interpolateBlues(t));
+  }
+  const colorMapping = d3.scaleThreshold()
+    .domain(thresholds.slice(1, -1))
+    .range(symbols);
+
+  pathFeatures.attr('fill', d => {
+    const population = sumReligiousPopulation(d.prop);
+    return colorMapping(population);
+  });
+
+  generateLegendThresholded(thresholds, symbols, num => num.toFixed(1));
 }
 
-function mapByPercentageOfChristians() {
+function mapByPercentageOfSpecifiedReligion(religion) {
+  const min = 0;
+  const max = 1;
 
-}
+  const thresholds = steppedThresholds(min, max, 0.1);
+  const symbols = [];
+  for (let i = 0; i < thresholds.length - 1; ++i) {
+    const classMid = (thresholds[i] + thresholds[i + 1]) * 0.5;
+    const t = (classMid - min + 0.3) / (max - min + 0.3);
+    symbols.push(d3.interpolateBlues(t));
+  }
+  const colorMapping = d3.scaleThreshold()
+    .domain(thresholds.slice(1, -1))
+    .range(symbols);
 
-function mapByPercentageOfMuslims() {
+  pathFeatures.attr('fill', d => {
+    const population = getSpecifiedReligiousPopulation(d.prop, religion);
+    return colorMapping(population);
+  });
 
-}
-
-function mapByPercentageOfBuddhists() {
-
-}
-
-function mapByPercentageOfJews() {
-
+  generateLegendThresholded(thresholds, symbols, num => num.toFixed(1));
 }
 
 let scaleBalanced = d3.scaleLinear().domain([1, 100]).range([1, 10]);
@@ -195,7 +277,7 @@ function mapClicked(d) {
     k = scaleBalanced(k);
 
     zoomed = d;
-    preCountryInfo.text(JSON.stringify(d.prop, null, 4));
+    preCountryInfo.text(JSON.stringify(d.prop, null, 4) + sumReligiousPopulation(d.prop));
   } else {
     // clicked on the feature already zoomed into or on the background, then zoom out
     x = mapSize.w / 2;
@@ -223,6 +305,7 @@ function mapClicked(d) {
       .attr('d', () => geoPath(zoomed.geo))
       .attr('fill', 'none')
       .attr('stroke', presentation.stroke_selectedFeature)
+      .attr('stroke-width', presentation.strokeWidth_selectedFeature)
       .attr('id', 'selected');
   }
 
@@ -235,25 +318,78 @@ function clearLegend() {
   svgLegend.selectAll('*').remove();
 }
 
-function generateLegendDiscrete(symbolDef) {
+function generateLegendClassified(symbolMapping) {
   clearLegend();
 
-  const hClass = legendSize.h / Object.keys(symbolDef).length;
-  let i = 0;
-  for (let className in symbolDef) {
-    svgLegend.append('rect')
-      .attr('x', legendSize.xCalibration)
-      .attr('y', i * hClass)
-      .attr('width', legendSize.wSymbols)
-      .attr('height', hClass - legendSize.hInterval)
-      .attr('fill', symbolDef[className]);
+  const classNames = Object.keys(symbolMapping);
+  const hClass = legendSize.hSymbols / classNames.length;
+
+  for (let i = 0; i < classNames.length; ++i) {
+    const className = classNames[i];
 
     svgLegend.append('text')
       .attr('x', legendSize.xText)
-      .attr('y', (i + 0.5) * hClass)
+      .attr('y', legendSize.hBorder + (i + 0.5) * hClass)
       .attr('fill', presentation.fill_legendText)
       .text(className);
 
-    ++i;
+    svgLegend.append('rect')
+      .attr('x', legendSize.xSymbols)
+      .attr('y', legendSize.hBorder + i * hClass)
+      .attr('width', legendSize.wSymbols)
+      .attr('height', hClass - legendSize.hInterval)
+      .attr('fill', symbolMapping[className]);
   }
+}
+
+function generateLegendThresholded(thresholds, symbols, printNum) {
+  clearLegend();
+
+  const hClass = legendSize.hSymbols / symbols.length;
+
+  for (let i = 0; i < thresholds.length; ++i) {
+    svgLegend.append('text')
+      .attr('x', legendSize.xText)
+      .attr('y', legendSize.hBorder + (i + 0.1) * hClass)
+      .attr('fill', presentation.fill_legendText)
+      .text(printNum == null ? thresholds[i] : printNum(thresholds[i]))
+
+    if (i === thresholds.length - 1) break;
+
+    svgLegend.append('rect')
+      .attr('x', legendSize.xSymbols)
+      .attr('y', legendSize.hBorder + i * hClass)
+      .attr('width', legendSize.wSymbols)
+      .attr('height', hClass)
+      .attr('fill', symbols[i]);
+  }
+}
+
+function sumReligiousPopulation(countryProp) {
+  if (countryProp.religionComposition == null) return 0;
+
+  const sum = Object.values(countryProp.religionComposition)
+    .reduce((result, population) => result + population, 0)
+
+  return sum <= 1 ? sum : 1;
+}
+
+function getSpecifiedReligiousPopulation(countryProp, religion) {
+  if (countryProp.religionComposition == null) return 0;
+
+  const pop = countryProp.religionComposition[religion];
+  return pop || 0;
+}
+
+function toFixedDecimals(num, dec, func) {
+  const mult = Math.pow(10, dec);
+  return func(num * mult) / mult;
+}
+
+function steppedThresholds(start, end, step) {
+  const thr = [];
+  for (let x = start; x <= end; x = x + step) {
+    thr.push(x);
+  }
+  return thr;
 }
