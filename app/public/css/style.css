@@ -2,22 +2,21 @@
     font-family: Avenir, sans-serif;
 }
 
+body {
+    background-color: #E8F6F3;
+}
+
 #mapOption {
     font-size: 16px;
 }
 
-#view {
-    width: 100%;
-}
-
 #map {
     float: left;
-    width: 70%;
 }
 
 #countryInfo {
     float: right;
-    width: 25%;
+    width: 20%
 }
 
 .background {

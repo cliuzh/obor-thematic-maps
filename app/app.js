@@ -16,10 +16,15 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
   const mongo = await MongoClient.connect(config.mongoConnectionUrl);
-  const col = mongo.db('obor').collection('docs');
-  const docs = await col.find().toArray();
+  const countries = await mongo.db('obor').collection('countries').find().toArray();
+  const languageClassification = (await mongo.db('obor').collection('languages').find().toArray())[0];
   await mongo.close();
-  res.locals.docs = docs;
+
+  res.locals = {
+    countries: countries,
+    languageClassification: languageClassification
+  };
+
   res.render('index');
 });
 
