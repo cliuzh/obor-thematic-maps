@@ -14,12 +14,18 @@ body {
     float: left;
 }
 
-#countryInfo {
-    float: right;
-    width: 20%
-}
-
 .background {
     fill: none;
     pointer-events: all;
+}
+
+.countryInfo {
+    position: absolute;
+    text-align: left;
+    padding: 15px;
+    font-size: 14px;
+    color: white;
+    background: #34495E;
+    pointer-events: none;
+    opacity: 0.75;
 }

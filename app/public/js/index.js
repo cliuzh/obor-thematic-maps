@@ -42,9 +42,6 @@ const svgLegend = divView.append('svg')
   .attr('width', legendSize.w)
   .attr('height', legendSize.h);
 
-const preCountryInfo = divView.append('pre')
-  .attr('id', 'countryInfo');
-
 svgMap.append('rect')
   .attr('class', 'background')
   .attr('width', mapSize.w)
@@ -55,13 +52,20 @@ const gFeatureCollection = svgMap.append('g')
   .attr('class', 'featureCollection')
   .attr('stroke', presentation.stroke_feature);
 
+const preCountryInfo = d3.select('body').append('pre')
+  .attr('class', 'countryInfo')
+  .style('display', 'none');
+
 const pathFeatures = gFeatureCollection.selectAll('path')
   .data(countriesOnMap)
   .enter()
   .append('path')
   .attr('class', 'feature')
   .attr('d', d => geoPath(d.geo))
-  .on('click', mapClicked);
+  .on('click', mapClicked)
+  .on('mouseover', featureMouseOver)
+  .on('mousemove', featureMouseMove)
+  .on('mouseout', featureMouseOut);
 
 mapByDefault();
 
@@ -170,7 +174,6 @@ function mapByPrevailingReligion() {
   });
 
   generateLegendClassified(symbolMapping);
-  console.log(d3.schemePaired);
 }
 
 function mapByNumberOfPopularReligions() {
@@ -229,11 +232,11 @@ function mapByPercentageOfReligiousPopulation() {
     .range(symbols);
 
   pathFeatures.attr('fill', d => {
-    const population = sumReligiousPopulation(d.prop);
+    const population = sumReligiousPercentage(d.prop);
     return colorMapping(population);
   });
 
-  generateLegendThresholded(thresholds, symbols, num => num.toFixed(1));
+  generateLegendThresholded(thresholds, symbols, num => printPercentage(num, 0));
 }
 
 function mapByPercentageOfSpecifiedReligion(religion) {
@@ -252,14 +255,26 @@ function mapByPercentageOfSpecifiedReligion(religion) {
     .range(symbols);
 
   pathFeatures.attr('fill', d => {
-    const population = getSpecifiedReligiousPopulation(d.prop, religion);
+    const population = getSpecifiedReligiousPercentage(d.prop, religion);
     return colorMapping(population);
   });
 
-  generateLegendThresholded(thresholds, symbols, num => num.toFixed(1));
+  generateLegendThresholded(thresholds, symbols, num => printPercentage(num, 0));
 }
 
 let scaleBalanced = d3.scaleLinear().domain([1, 100]).range([1, 10]);
+
+function mouseOverFeature(d) {
+  svgMap.append('text')
+    .attr('class', 'tip')
+    .attr('x', d3.event.pageX)
+    .attr('y', d3.event.pageY)
+    .text(d.prop);
+}
+
+function mouseOutFeature(d) {
+  console.log('out');
+}
 
 function mapClicked(d) {
   let x, y, k;
@@ -277,14 +292,12 @@ function mapClicked(d) {
     k = scaleBalanced(k);
 
     zoomed = d;
-    preCountryInfo.text(JSON.stringify(d.prop, null, 4) + sumReligiousPopulation(d.prop));
   } else {
     // clicked on the feature already zoomed into or on the background, then zoom out
     x = mapSize.w / 2;
     y = mapSize.h / 2;
     k = 1;
     zoomed = null;
-    preCountryInfo.text(null);
   }
 
   // pathFeatures.attrs(function (d) {
@@ -365,7 +378,7 @@ function generateLegendThresholded(thresholds, symbols, printNum) {
   }
 }
 
-function sumReligiousPopulation(countryProp) {
+function sumReligiousPercentage(countryProp) {
   if (countryProp.religionComposition == null) return 0;
 
   const sum = Object.values(countryProp.religionComposition)
@@ -374,7 +387,7 @@ function sumReligiousPopulation(countryProp) {
   return sum <= 1 ? sum : 1;
 }
 
-function getSpecifiedReligiousPopulation(countryProp, religion) {
+function getSpecifiedReligiousPercentage(countryProp, religion) {
   if (countryProp.religionComposition == null) return 0;
 
   const pop = countryProp.religionComposition[religion];
@@ -392,4 +405,39 @@ function steppedThresholds(start, end, step) {
     thr.push(x);
   }
   return thr;
+}
+
+function printPercentage(num, dec) {
+  return `${(num * 100).toFixed(dec)}%`;
+}
+
+function featureMouseOver(d) {
+  preCountryInfo
+    .style('display', 'inline')
+    .text(printCountryInfo(d.prop));
+}
+
+function featureMouseMove(d) {
+  preCountryInfo
+    .style("left", (d3.event.pageX + 5) + "px")
+    .style("top", (d3.event.pageY - 10) + "px");
+}
+
+function featureMouseOut() {
+  preCountryInfo.style('display', 'none');
+}
+
+function printCountryInfo(countryProp) {
+  let infoText = '';
+
+  infoText += `Country:\t\t\t\t${countryProp.countryName}`;
+  infoText += `\nNative Language:\t\t${countryProp.officialLanguages[0]}`;
+  infoText += `\nPrevailing Religion:\t\t${
+    countryProp.dominantReligion == null ? 'Non-religious' : countryProp.dominantReligion.name
+  }`;
+  infoText += `\nReligious Population:\t${
+    printPercentage(sumReligiousPercentage(countryProp), 1)
+  }`;
+
+  return infoText;
 }
