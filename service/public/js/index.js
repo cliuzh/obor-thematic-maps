@@ -4,9 +4,9 @@ const { countries, languageClassification } = locals;
 const countriesOnMap = countries.filter(doc => doc.geo !== null);
 delete languageClassification._id;
 
-const mapSize = { w: 800, h: 550 };
+const mapSize = { w: 700, h: 550 };
 const legendSize = {
-  wSymbols: 100, wInterval: 20, wText: 300,
+  wSymbols: 50, wInterval: 20, wText: 200,
   h: 550, hInterval: 4, hBorder: 50,
   get w() { return this.wSymbols + this.wText + this.wInterval * 2; },
   get hSymbols() { return this.h - this.hBorder * 2; },
@@ -17,16 +17,16 @@ const legendSize = {
 let zoomed;
 
 const presentation = {
-  fill_feature: '#7FB3D5',
+  fill_feature: '#85C1E9',
   stroke_feature: '#ECF0F1',
-  stroke_selectedFeature: '#000000',
-  strokeWidth_selectedFeature: 2,
+  strokeWidth_feature: 1,
+  stroke_selectedFeature: '#1B2631',
   fill_legendText: '#34495E'
 };
 
 const projection = d3.geoMercator()
   .rotate([-10, 0])
-  .center([120, 60])
+  .center([150, 60])
   .scale(150);
 
 const geoPath = d3.geoPath().projection(projection);
@@ -39,6 +39,7 @@ const svgMap = divView.append('svg')
   .attr('height', mapSize.h);
 
 const svgLegend = divView.append('svg')
+  .attr('id', 'legend')
   .attr('width', legendSize.w)
   .attr('height', legendSize.h);
 
@@ -50,7 +51,8 @@ svgMap.append('rect')
 
 const gFeatureCollection = svgMap.append('g')
   .attr('class', 'featureCollection')
-  .attr('stroke', presentation.stroke_feature);
+  .attr('stroke', presentation.stroke_feature)
+  .attr('stroke-width', presentation.strokeWidth_feature);
 
 const preCountryInfo = d3.select('body').append('pre')
   .attr('class', 'countryInfo')
@@ -69,23 +71,11 @@ const pathFeatures = gFeatureCollection.selectAll('path')
 
 mapByDefault();
 
-d3.select('#mapOption')
-  .on('change', function() {
-    switch (d3.select(this).property('value')) {
-      case 'Default': mapByDefault(); break;
-      case 'Native Language Family': mapByNativeLanguageFamily(); break;
-      case 'Number of Official Languages': mapByNumOfOfficialLanguages(); break;
-      case 'English as Official Language': mapByEnglishAsOfficialLanguage(); break;
-      case 'Prevailing Religion': mapByPrevailingReligion(); break;
-      case 'Number of Popular Religions': mapByNumberOfPopularReligions(); break;
-      case 'Officially Religious': mapByOfficiallyReligious(); break;
-      case 'Percentage of Religious Population': mapByPercentageOfReligiousPopulation(); break;
-      case 'Percentage of Christians': mapByPercentageOfSpecifiedReligion('Christianity'); break;
-      case 'Percentage of Muslims': mapByPercentageOfSpecifiedReligion('Islam'); break;
-      case 'Percentage of Buddhists': mapByPercentageOfSpecifiedReligion('Buddhism'); break;
-      case 'Percentage of Orthodox Christians': mapByPercentageOfSpecifiedReligion('Orthodoxy'); break;
-      default: break;
-    }
+d3.select('#mapOptions').selectAll('.mapOption')
+  .each(function() {
+    const option = d3.select(this);
+    const optionString = option.attr('id');
+    option.on('click', () => eval(optionString + '()'));
   });
 
 function mapByDefault() {
@@ -114,7 +104,7 @@ function mapByNativeLanguageFamily() {
   generateLegendClassified(symbolMapping);
 }
 
-function mapByNumOfOfficialLanguages() {
+function mapByNumOfficialLanguages() {
   let {min, max} = countriesOnMap.reduce((result, country) => {
     const num = country.prop.officialLanguages.length;
     if (num < result.min) {
@@ -139,7 +129,7 @@ function mapByNumOfOfficialLanguages() {
   generateLegendClassified(symbolMapping);
 }
 
-function mapByEnglishAsOfficialLanguage() {
+function mapByEnglishAsOfficial() {
   const symbolMapping = {
     'English Official': '#76D7C4',
     'English not Official': '#85C1E9' };
@@ -176,7 +166,7 @@ function mapByPrevailingReligion() {
   generateLegendClassified(symbolMapping);
 }
 
-function mapByNumberOfPopularReligions() {
+function mapByNumPopularReligions() {
   let {min, max} = countriesOnMap.reduce((result, country) => {
     const num = Object.keys(country.prop.religionComposition).length;
     console.log(num);
@@ -216,7 +206,7 @@ function mapByOfficiallyReligious() {
   generateLegendClassified(symbolMapping);
 }
 
-function mapByPercentageOfReligiousPopulation() {
+function mapByPctReligiousPopulation() {
   const min = 0;
   const max = 1;
 
@@ -239,7 +229,7 @@ function mapByPercentageOfReligiousPopulation() {
   generateLegendThresholded(thresholds, symbols, num => printPercentage(num, 0));
 }
 
-function mapByPercentageOfSpecifiedReligion(religion) {
+function mapByPctSpecifiedReligion(religion) {
   const min = 0;
   const max = 1;
 
@@ -262,19 +252,14 @@ function mapByPercentageOfSpecifiedReligion(religion) {
   generateLegendThresholded(thresholds, symbols, num => printPercentage(num, 0));
 }
 
-let scaleBalanced = d3.scaleLinear().domain([1, 100]).range([1, 10]);
+function mapByPctChristians() { return mapByPctSpecifiedReligion('Christianity'); }
+function mapByPctMuslims() { return mapByPctSpecifiedReligion('Islam'); }
+function mapByPctBuddhists() { return mapByPctSpecifiedReligion('Buddhism'); }
+function mapByPctOrthodoxChristians() { return mapByPctSpecifiedReligion('Orthodoxy'); }
 
-function mouseOverFeature(d) {
-  svgMap.append('text')
-    .attr('class', 'tip')
-    .attr('x', d3.event.pageX)
-    .attr('y', d3.event.pageY)
-    .text(d.prop);
-}
-
-function mouseOutFeature(d) {
-  console.log('out');
-}
+let scaleMapping = d3.scaleThreshold()
+  .domain([1, 5, 10, 30])
+  .range([1, 1.5, 2, 3, 5]);
 
 function mapClicked(d) {
   let x, y, k;
@@ -288,8 +273,10 @@ function mapClicked(d) {
     const dx = bounds[1][0] - bounds[0][0];
     const dy = bounds[1][1] - bounds[0][1];
 
-    k = d.prop.countryId === 'RUS' ? 1.5 : k = 0.75 / Math.max(dx / mapSize.w, dy / mapSize.h);
-    k = scaleBalanced(k);
+    k = 0.75 / Math.max(dx / mapSize.w, dy / mapSize.h);
+    k = scaleMapping(k);
+
+    if (d.prop.countryId === 'RUS') k = 1.5;
 
     zoomed = d;
   } else {
@@ -312,19 +299,22 @@ function mapClicked(d) {
   //   }
   // });
 
+  let pathZoomedFeature;
   gFeatureCollection.select('#selected').remove();
   if (zoomed) {
-    gFeatureCollection.append('path')
+    pathZoomedFeature = gFeatureCollection.append('path')
       .attr('d', () => geoPath(zoomed.geo))
       .attr('fill', 'none')
       .attr('stroke', presentation.stroke_selectedFeature)
-      .attr('stroke-width', presentation.strokeWidth_selectedFeature)
       .attr('id', 'selected');
   }
 
-  gFeatureCollection.transition()
-    .duration(750)
-    .attr('transform', `translate(${mapSize.w / 2},${mapSize.h / 2})scale(${k})translate(${-x},${-y})`);
+  const transitionTime = 750;
+  gFeatureCollection
+    .transition()
+    .duration(transitionTime)
+    .attr('transform', `translate(${mapSize.w / 2},${mapSize.h / 2})scale(${k})translate(${-x},${-y})`)
+    .attr('stroke-width', presentation.strokeWidth_feature / k);
 }
 
 function clearLegend() {
@@ -365,7 +355,7 @@ function generateLegendThresholded(thresholds, symbols, printNum) {
       .attr('x', legendSize.xText)
       .attr('y', legendSize.hBorder + (i + 0.1) * hClass)
       .attr('fill', presentation.fill_legendText)
-      .text(printNum == null ? thresholds[i] : printNum(thresholds[i]))
+      .text(printNum == null ? thresholds[i] : printNum(thresholds[i]));
 
     if (i === thresholds.length - 1) break;
 

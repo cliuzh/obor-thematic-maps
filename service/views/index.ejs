@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Belt & Road - Thematic Maps</title>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' href='css/w3.css'>
+    <link rel='stylesheet' href='css/fonts.css'>
+    <link rel='stylesheet' href='css/style.css'>
+
+    <script src='js/d3.v5.min.js'></script>
+    <script src='js/d3-selection-multi.v1.min.js'></script>
+</head>
+
+<body>
+<nav id='sidebar' class='w3-sidebar w3-collapse w3-top w3-large w3-padding'>
+    <br>
+    <div class='w3-container'>
+        <b id='title'>The Belt & Road<br>Thematic Maps</b>
+    </div>
+    <hr style='opacity: 0.5'>
+    <div class='w3-bar-block' id='mapOptions'>
+        <a id='mapByDefault' class='mapOption w3-bar-item w3-button w3-hover-white'>Default</a>
+        <a id='mapByNativeLanguageFamily' class='mapOption w3-bar-item w3-button w3-hover-white'>Native Language Family</a>
+        <a id='mapByNumOfficialLanguages' class='mapOption w3-bar-item w3-button w3-hover-white'>Num. Official Languages</a>
+        <a id='mapByEnglishAsOfficial' class='mapOption w3-bar-item w3-button w3-hover-white'>English as Official</a>
+        <a id='mapByPrevailingReligion' class='mapOption w3-bar-item w3-button w3-hover-white'>Prevailing Religion</a>
+        <a id='mapByNumPopularReligions' class='mapOption w3-bar-item w3-button w3-hover-white'>Num. Popular Religions</a>
+        <a id='mapByOfficiallyReligious' class='mapOption w3-bar-item w3-button w3-hover-white'>Officially Religious</a>
+        <a id='mapByPctReligiousPopulation' class='mapOption w3-bar-item w3-button w3-hover-white'>Pct. Religious Population</a>
+        <a id='mapByPctChristians' class='mapOption w3-bar-item w3-button w3-hover-white'>Pct. Christians</a>
+        <a id='mapByPctMuslims' class='mapOption w3-bar-item w3-button w3-hover-white'>Pct. Muslims</a>
+        <a id='mapByPctBuddhists' class='mapOption w3-bar-item w3-button w3-hover-white'>Pct. Buddhists</a>
+        <a id='mapByPctOrthodoxChristians' class='mapOption w3-bar-item w3-button w3-hover-white'>Pct. Orthodox Christians</a>
+    </div>
+</nav>
+
+<div id='view' class='w3-main'>
+
+    <script>const locals = <%- JSON.stringify(locals) %>;</script>
+    <script src='js/index.js'></script>
+</body>
+</html>

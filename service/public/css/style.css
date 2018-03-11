@@ -1,0 +1,50 @@
+* {
+    font-family: Avenir, sans-serif;
+}
+
+/*Customized below*/
+
+#sidebar {
+    width:260px;
+    font-weight:bold;
+    background: #5D6D7E;
+    color: #FBFCFC;
+}
+
+#title {
+    font-size: 22px;
+}
+
+.mapOption {
+    font-size: 14px;
+}
+
+#view {
+    margin-left: 280px;
+    margin-top: 25px
+}
+
+#legend {
+    font-weight: bold;
+}
+
+.background {
+    fill: none;
+    pointer-events: all;
+}
+
+.countryInfo {
+    position: absolute;
+    text-align: left;
+    padding: 15px;
+    font-family: Avenir, sans-serif;
+    font-size: 14px;
+    color: white;
+    background: #34495E;
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+.featureCollection {
+    cursor: pointer;
+}
