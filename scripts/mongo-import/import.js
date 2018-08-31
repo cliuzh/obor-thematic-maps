@@ -18,7 +18,7 @@ async function importCountries() {
   }
 
   await mongo.close();
-  console.log('DONE');
+  console.log('Import countries finished.');
 }
 
 async function importLanguages() {
@@ -26,7 +26,8 @@ async function importLanguages() {
   await mongo.db('obor').collection('languages').insertOne(dataLanguages);
 
   await mongo.close();
-  console.log('DONE');
+  console.log('Import languages finished.');
 }
 
 importCountries().catch(err => console.log(err));
+importLanguages().catch(err => console.log(err));
